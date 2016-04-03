@@ -1,1 +1,1 @@
-Create some Python tools used in-house at Juniper to automate PR processing and filtering.
+Create some Python tools used internally at Juniper to automate PR processing and filtering.
