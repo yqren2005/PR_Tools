@@ -21,22 +21,22 @@ def contain_words(s, l):
     return False
 
 
-def filtering(df, keywords, columns, flag):
-    msg, rules = '', []
-    lower_columns = [col.lower() for col in df.columns]
-    while flag not in ['i', 'e']:
-        print "\n%s not recognized" % flag
-        flag = raw_input("Enter either i to include or e to exclude: ")
-    for k, v in enumerate(columns):
-        while v.lower() not in lower_columns:
-            print "\n%s doesn't exist" % v
-            v = raw_input("Re-enter this column: ")
-        columns[k] = df.columns[lower_columns.index(v.lower())].encode('utf8')
-        rules.append(df[columns[k]].str.contains('(?i)' + str(keywords), na=False))
-    msg = "%s PRs matching %s in %s" % (('Omit:' if flag == 'e' else 'Include:'),
-                                        (keywords if len(keywords) < 10 else keywords[:10] + '...'),
+def filtering(d_f, key_words, columns, f):
+    msg, rule = '', []
+    lower_columns = [col.lower() for col in d_f.columns]
+    while f not in ['i', 'e']:
+        print "\n%s not recognized" % f
+        f = raw_input("Enter either i to include or e to exclude: ")
+    for ix, val in enumerate(columns):
+        while val.lower() not in lower_columns:
+            print "\n%s doesn't exist" % val
+            val = raw_input("Re-enter this column: ")
+        columns[ix] = d_f.columns[lower_columns.index(val.lower())].encode('utf8')
+        rule.append(d_f[columns[ix]].str.contains('(?i)' + str(key_words), na=False))
+    msg = "%s PRs matching %s in %s" % (('Omit:' if f == 'e' else 'Include:'),
+                                        (key_words if len(key_words) < 10 else key_words[:10] + '...'),
                                         ', '.join(columns))
-    return reduce(lambda x, y: x | y, rules), msg
+    return reduce(lambda x, y: x | y, rule), msg
 
 
 try:
